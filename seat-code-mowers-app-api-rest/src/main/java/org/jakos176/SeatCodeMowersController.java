@@ -2,7 +2,7 @@ package org.jakos176;
 
 import lombok.RequiredArgsConstructor;
 import org.jakos176.dto.FullMovementDto;
-import org.jakos176.mapper.FindMovementsForMowersMapper;
+import org.jakos176.mapper.FindMovementsForMowersQueryMapper;
 import org.jakos176.queries.FindMovementsForMowersQuery;
 import org.jakos176.queries.FindMovementsForMowersQueryHandler;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SeatCodeMowersController {
 
-    private final FindMovementsForMowersMapper findMovementsForMowersMapper;
+    private final FindMovementsForMowersQueryMapper findMovementsForMowersQueryMapper;
 
     private final FindMovementsForMowersQueryHandler findMovementsForMowersQueryHandler;
 
     @GetMapping("/execute")
     public Mono<ResponseEntity<FullMovementDto>> findMovementsForMowers(String plateau, List<List<String>> fullMovement) {
-        FindMovementsForMowersQuery query = findMovementsForMowersMapper.asFindMovementsForMowersQuery(plateau, fullMovement);
+        FindMovementsForMowersQuery query = findMovementsForMowersQueryMapper.asFindMovementsForMowersQuery(plateau, fullMovement);
 
 //        return this.findMovementsForMowersQueryHandler.execute(query);
         return null;

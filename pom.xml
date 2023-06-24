@@ -13,6 +13,7 @@
         <module>seat-code-mowers-app-application</module>
         <module>seat-code-mowers-app-domain</module>
         <module>seat-code-mowers-app-boot</module>
+        <module>seat-code-mowers-app-infraestructure</module>
     </modules>
     <properties>
         <maven.compiler.source>20</maven.compiler.source>
@@ -58,6 +59,13 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.5.5.Final</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
