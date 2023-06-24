@@ -1,14 +1,16 @@
 package org.jakos176;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
+import org.jakos176.enums.CompassPointEnum;
 
-@RequiredArgsConstructor
-public enum CompassPoint {
+@Builder
+@Value
+public class CompassPoint {
 
-    NORTH("N"),
-    SOUTH("S"),
-    EAST("E"),
-    WEST("W");
+    Integer pointX;
 
-    private final String coordinate;
+    Integer pointY;
+
+    CompassPointEnum compassPointEnum;
 }

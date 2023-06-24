@@ -1,13 +1,14 @@
 package org.jakos176;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
+import lombok.Value;
+import org.jakos176.enums.ControlEnum;
 
-@RequiredArgsConstructor
-public enum Control {
+import java.util.List;
 
-    LEFT("L"),
-    RIGHT("R"),
-    MOVEMENT("M");
+@Builder
+@Value
+public class Control {
 
-    private final String direction;
+    List<ControlEnum> controlEnums;
 }
