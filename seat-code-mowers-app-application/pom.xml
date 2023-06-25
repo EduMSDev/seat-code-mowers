@@ -16,5 +16,10 @@
             <artifactId>seat-code-mowers-app-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>32.0.1-jre</version>
+        </dependency>
     </dependencies>
 </project>
