@@ -3,17 +3,39 @@ package org.jakos176;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.List;
+
+//todo cambiar boolean por Boolean
+// todo implement exceptions
+
 @Builder
 @Value
 public class Plateau {
 
-    Integer upperRight;
+    List<List<Cell>> plateauDistribution;
 
-    Integer upperLeft;
+    public boolean isPositionBusy(Integer posX, Integer posY) {
+        return plateauDistribution.get(posX).get(posY).isBusy();
+    }
 
-    @Builder.Default
-    Integer bottomRight = 0;
+    public boolean isPositionCut(Integer posX, Integer posY) {
+        return plateauDistribution.get(posX).get(posY).isCut();
+    }
 
-    @Builder.Default
-    Integer bottomLeft = 0;
+    public boolean positionIsWithInRange(Integer posX, Integer posY) {
+        return posX <= this.plateauDistribution.get(0).size() && posY <= this.plateauDistribution.get(1).size();
+    }
+
+    public boolean setMowerInPlateau(Integer posX, Integer posY) {
+        if (this.isPositionBusy(posX, posY)) {
+            return false;
+        }
+
+        if (this.isPositionBusy(posX, posY)) {
+            return false;
+        }
+
+        this.plateauDistribution.get(posX).get(posY).setBusy(true);
+        return true;
+    }
 }

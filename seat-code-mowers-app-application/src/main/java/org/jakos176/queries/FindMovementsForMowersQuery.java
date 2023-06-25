@@ -11,5 +11,5 @@ public class FindMovementsForMowersQuery implements Query {
 
     String plateau;
 
-    List<List<String>> fullMovement;
+    List<String> fullMovement;
 }

@@ -7,8 +7,7 @@ import java.util.List;
 
 public class QueryObjectMother {
 
-    public static FindMovementsForMowersQuery findMovementsForMowersQuery(String plateau,
-                                                                          List<List<String>> fullMovements) {
+    public static FindMovementsForMowersQuery findMovementsForMowersQuery(String plateau, List<String> fullMovements) {
         return FindMovementsForMowersQuery.builder()
                 .plateau(plateau)
                 .fullMovement(fullMovements)
@@ -17,10 +16,10 @@ public class QueryObjectMother {
 
     public static Plateau plateau() {
         return Plateau.builder()
-                .bottomRight(0)
-                .bottomLeft(0)
-                .upperLeft(5)
-                .upperRight(5)
+//                .bottomRight(0)
+//                .bottomLeft(0)
+//                .upperLeft(5)
+//                .upperRight(5)
                 .build();
     }
 }

@@ -1,9 +1,6 @@
 package mapper;
 
-import org.jakos176.CompassPoint;
-import org.jakos176.Control;
-import org.jakos176.FindMovementsForMowerFilter;
-import org.jakos176.FullMovement;
+import org.jakos176.*;
 import org.jakos176.enums.CompassPointEnum;
 import org.jakos176.enums.ControlEnum;
 import org.jakos176.exceptions.*;
@@ -17,6 +14,7 @@ import org.mapstruct.factory.Mappers;
 import org.mockito.junit.jupiter.MockitoExtension;
 import queries.QueryObjectMother;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -31,7 +29,7 @@ class FindMovementsForMowersQueryMapperTest {
 
     @Test
     void asFindMovementsForMowerFilter_ShouldReturnFindMovementsForMowerFilter_OnSuccess() {
-        List<List<String>> fullMovements = List.of(List.of("12N"), List.of("LMLMLMLMM"));
+        List<String> fullMovements = List.of("12N", "LMLMLMLMM");
         FindMovementsForMowersQuery findMovementsForMowersQuery = QueryObjectMother
                 .findMovementsForMowersQuery("55", fullMovements);
 
@@ -45,10 +43,14 @@ class FindMovementsForMowersQueryMapperTest {
     void asFullMovement_ShouldReturnPlateau_OnSuccess() {
         FullMovement fullMovement = findMovementsForMowersQueryMapper.asFullMovement("5 5", List.of("1 2 E", "LRML"));
 
-        assertThat(fullMovement).returns(0, movement -> movement.getPlateau().getBottomLeft())
-                .returns(0, movement -> movement.getPlateau().getBottomRight())
-                .returns(5, movement -> movement.getPlateau().getUpperLeft())
-                .returns(5, movement -> movement.getPlateau().getUpperRight())
+        List<Cell> cells = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            cells.add(Cell.builder().build());
+        }
+        List<List<Cell>> distribution = List.of(cells, cells);
+        assertThat(fullMovement.getPlateau().getPlateauDistribution().get(0)).usingRecursiveComparison().isEqualTo(distribution.get(0));
+        assertThat(fullMovement.getPlateau().getPlateauDistribution().get(1)).usingRecursiveComparison().isEqualTo(distribution.get(0));
+        assertThat(fullMovement)
                 .returns(1, movement -> movement.getMovement().get(0).getCompassPoint().getPointX())
                 .returns(2, movement -> movement.getMovement().get(0).getCompassPoint().getPointY())
                 .returns(CompassPointEnum.EAST, movement -> movement.getMovement().get(0).getCompassPoint().getCompassPointEnum())

@@ -24,7 +24,7 @@ public interface FindMovementsForMowersQueryMapper {
 
     FindMovementsForMowerFilter asFindMovementsForMowerFilter(FindMovementsForMowersQuery findMovementsForMowersQuery);
 
-    FindMovementsForMowersQuery asFindMovementsForMowersQuery(String plateau, List<List<String>> fullMovement);
+    FindMovementsForMowersQuery asFindMovementsForMowersQuery(String plateau, List<String> fullMovement);
 
     default Plateau asPlateau(String plateau) {
         List<Integer> plateauNumbers = getCharacterStream(plateau)
@@ -40,10 +40,23 @@ public interface FindMovementsForMowersQueryMapper {
             throw new InvalidSizePlateauException(plateau);
         }
 
+        List<Integer> axis = getCharacterStream(plateau)
+                .map(Integer::valueOf).toList();
+
+        List<Cell> axisX = integerAsCell(axis, 0);
+        List<Cell> axisY = integerAsCell(axis, 1);
+
         return Plateau.builder()
-                .upperLeft(plateauNumbers.get(0))
-                .upperRight(plateauNumbers.get(1))
+                .plateauDistribution(List.of(axisX, axisY))
                 .build();
+    }
+
+    private static List<Cell> integerAsCell(List<Integer> axis, int index) {
+        List<Cell> cells = new ArrayList<>();
+        for (int integer = 0; integer < axis.get(index); integer++) {
+            cells.add(Cell.builder().build());
+        }
+        return cells;
     }
 
     private boolean isNumeric(String character) {
