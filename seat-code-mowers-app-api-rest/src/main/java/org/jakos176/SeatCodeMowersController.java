@@ -7,15 +7,16 @@ import org.jakos176.mapper.FullMovementDtoMapper;
 import org.jakos176.queries.FindMovementsForMowersQuery;
 import org.jakos176.queries.FindMovementsForMowersQueryHandler;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @RequestMapping("/mowers")
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class SeatCodeMowersController {
 
@@ -25,8 +26,9 @@ public class SeatCodeMowersController {
 
     private final FullMovementDtoMapper fullMovementDtoMapper;
 
-    @GetMapping("/execute")
-    public Mono<ResponseEntity<FullMovementDto>> findMovementsForMowers(String plateau, List<String> fullMovement) {
+    @GetMapping(value = "/execute")
+    public Mono<ResponseEntity<FullMovementDto>> findMovementsForMowers(@RequestParam String plateau,
+                                                                        @RequestParam List<String> fullMovement) {
         FindMovementsForMowersQuery query = findMovementsForMowersQueryMapper.asFindMovementsForMowersQuery(plateau, fullMovement);
 
         return this.findMovementsForMowersQueryHandler.execute(query)

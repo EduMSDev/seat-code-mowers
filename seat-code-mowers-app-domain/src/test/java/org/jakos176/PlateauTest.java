@@ -1,5 +1,6 @@
-import model.DomainObjectMother;
-import org.jakos176.Plateau;
+package org.jakos176;
+
+import org.jakos176.testmodel.DomainObjectMother;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -47,34 +48,6 @@ class PlateauTest {
         Plateau plateau = DomainObjectMother.plateau();
 
         assertFalse(plateau.positionIsWithInRange(posX, posY));
-    }
-
-    @Test
-    void isPositionBusy_ShouldReturnTrue_WhenCellIsBusy() {
-        Plateau plateau = DomainObjectMother.plateauWithBusyAndCutCell();
-
-        assertTrue(plateau.isPositionBusy(0, 0));
-    }
-
-    @Test
-    void isPositionBusy_ShouldReturnFalse_WhenCellIsNotBusy() {
-        Plateau plateau = DomainObjectMother.plateauWithNonBusyAndCutCell();
-
-        assertFalse(plateau.isPositionBusy(0, 0));
-    }
-
-    @Test
-    void isPositionCut_ShouldReturnTrue_WhenCellIsCut() {
-        Plateau plateau = DomainObjectMother.plateauWithBusyAndCutCell();
-
-        assertTrue(plateau.isPositionCut(0, 0));
-    }
-
-    @Test
-    void isPositionCut_ShouldReturnFalse_WhenCellIsNoCut() {
-        Plateau plateau = DomainObjectMother.plateauWithNonBusyAndCutCell();
-
-        assertFalse(plateau.isPositionCut(0, 0));
     }
 
     @Test

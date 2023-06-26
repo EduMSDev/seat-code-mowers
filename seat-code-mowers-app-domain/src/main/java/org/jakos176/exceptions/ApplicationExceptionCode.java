@@ -18,7 +18,11 @@ public enum ApplicationExceptionCode {
 
     INVALID_CONTROL_ERROR(6),
 
-    INVALID_NUMERIC_CONTROL_ERROR(7);
+    INVALID_NUMERIC_CONTROL_ERROR(7),
+
+    BUSY_OR_CUT_POSITION_ERROR(8),
+
+    OUT_OF_RANGE_POSITION_ERROR(9);
 
     @Getter
     private final Integer code;

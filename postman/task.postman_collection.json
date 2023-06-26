@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "e90bf902-ab07-4241-aa66-31c0aea23587",
+		"name": "task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7246916"
+	},
+	"item": [
+		{
+			"name": "seat code mowers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Length",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/mowers/execute?plateau=\"5 5\"&fullMovement=\"1 2 N&fullMovement=\"LMLMLMLMM\"",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mowers",
+						"execute"
+					],
+					"query": [
+						{
+							"key": "plateau",
+							"value": "\"5 5\""
+						},
+						{
+							"key": "fullMovement",
+							"value": "\"1 2 N"
+						},
+						{
+							"key": "fullMovement",
+							"value": "\"LMLMLMLMM\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

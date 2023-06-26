@@ -1,14 +1,29 @@
 package org.jakos176;
 
-import lombok.EqualsAndHashCode;
+import lombok.Builder;
+import lombok.Setter;
 import lombok.Value;
-import lombok.experimental.SuperBuilder;
+import lombok.experimental.NonFinal;
 import org.jakos176.enums.CompassPointEnum;
 
-@EqualsAndHashCode(callSuper = true)
-@SuperBuilder
+@Builder
 @Value
-public class CompassPoint extends Position {
+public class CompassPoint {
 
+    Integer pointX;
+
+    Integer pointY;
+
+    @NonFinal
+    @Setter
     CompassPointEnum compassPointEnum;
+
+    @Override
+    public String toString() {
+        return "CompassPoint{" +
+                "pointX=" + pointX +
+                ", pointY=" + pointY +
+                ", compassPointEnum=" + compassPointEnum +
+                '}';
+    }
 }

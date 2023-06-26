@@ -5,21 +5,34 @@ import lombok.Value;
 
 import java.util.List;
 
-//todo cambiar boolean por Boolean
-// todo implement exceptions
-
 @Builder
 @Value
 public class Plateau {
 
     List<List<Cell>> plateauDistribution;
 
-    public boolean isPositionBusy(Integer posX, Integer posY) {
-        return plateauDistribution.get(posX).get(posY).isBusy();
+    private boolean isPositionBusy(Integer posX, Integer posY) {
+        return this.findCellPosition(posX, posY).isBusy();
     }
 
-    public boolean isPositionCut(Integer posX, Integer posY) {
-        return plateauDistribution.get(posX).get(posY).isCut();
+    private Cell findCellPosition(int posX, int posY) {
+        return this.plateauDistribution.stream()
+                .flatMap(List::stream)
+                .filter(cell -> cell.getPointX() == posX && cell.getPointY() == posY)
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void setPositionBusy(Integer posX, Integer posY) {
+        this.findCellPosition(posX, posY).setBusy(true);
+    }
+
+    public void setPositionCut(Integer posX, Integer posY) {
+        this.findCellPosition(posX, posY).setCut(true);
+    }
+
+    private boolean isPositionCut(Integer posX, Integer posY) {
+        return this.findCellPosition(posX, posY).isCut();
     }
 
     public boolean positionIsWithInRange(Integer posX, Integer posY) {
@@ -31,11 +44,18 @@ public class Plateau {
             return false;
         }
 
-        if (this.isPositionBusy(posX, posY)) {
+        if (this.isPositionCut(posX, posY)) {
             return false;
         }
 
-        this.plateauDistribution.get(posX).get(posY).setBusy(true);
+        this.setPositionBusy(posX, posY);
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Plateau{" +
+                "plateauDistribution=" + plateauDistribution +
+                '}';
     }
 }

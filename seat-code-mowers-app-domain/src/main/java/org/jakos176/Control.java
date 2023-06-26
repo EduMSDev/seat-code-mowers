@@ -11,4 +11,13 @@ import java.util.List;
 public class Control {
 
     List<ControlEnum> controlEnums;
+
+    @Override
+    public String toString() {
+        String s = "Control{" +
+                "controlEnums=";
+        List<String> list = controlEnums.stream().map(ControlEnum::getDirection).toList();
+        return s + list +
+                '}';
+    }
 }
